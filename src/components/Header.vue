@@ -39,7 +39,7 @@
 
             <nav>
                 <RouterLink to="/">Strona główna</RouterLink>
-                <RouterLink to="/">Dodaj spotkanie</RouterLink>
+                <RouterLink to="/newGame">Dodaj spotkanie</RouterLink>
                 <RouterLink to="/login">Zaloguj</RouterLink>
             </nav>
         </div>

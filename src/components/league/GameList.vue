@@ -1,54 +1,26 @@
 <script setup lang="ts">
 import GameItem from './GameItem.vue';
-const games = [
-{
-        id: 1,
-        date: '2023-07-01',
-        playerOne: { name: 'John', surname: 'Doe' },
-        score: '6:4',
-        playerTwo: { name: 'Jane', surname: 'Smith' }
-    },
-    {
-        id: 2,
-        date: '2023-07-02',
-        playerOne: { name: 'Alice', surname: 'Johnson' },
-        score: '6:3',
-        playerTwo: { name: 'Bob', surname: 'Williams' }
-    },
-    {
-        id: 3,
-        date: '2023-07-03',
-        playerOne: { name: 'Michael', surname: 'Brown' },
-        score: '6:2',
-        playerTwo: { name: 'Emma', surname: 'Davis' }
-    },
-    {
-        id: 4,
-        date: '2023-07-04',
-        playerOne: { name: 'David', surname: 'Miller' },
-        score: '6:1',
-        playerTwo: { name: 'Olivia', surname: 'Jones' }
-    },
-    {
-        id: 5,
-        date: '2023-07-05',
-        playerOne: { name: 'Daniel', surname: 'Wilson' },
-        score: '6:5',
-        playerTwo: { name: 'Sophia', surname: 'Martinez' }
-    },
-    {
-        id: 6,
-        date: '2023-07-06',
-        playerOne: { name: 'Matthew', surname: 'Taylor' },
-        score: '6:0',
-        playerTwo: { name: 'Isabella', surname: 'Anderson' }
-    }
-]
+import { useQuery } from 'vue-query';
+import { VueQueryDevTools } from "vue-query/devtools";
+import { Game } from '../../types/Game.ts';
+
+const fetcher = async (): Promise<Game[]> =>
+  await fetch("https://steel-dart.skni.edu.pl/api/games").then((response) =>
+    response.json()
+  );
+
+const { isLoading, isError,  data, error } = useQuery("games",fetcher);
 </script>
 <template>
+    <span v-if="isLoading">Loading...</span>
+  <span v-else-if="isError">Error: {{ error.message }}</span>
+  <!-- We can assume by this point that `isSuccess === true` -->
+  <ul v-else>
     <div class="games">
-        <GameItem v-for="game in games" :key="game.id" :game="game"/>
+        <GameItem v-for="game in data.data" :key="game.id" :game="game"/>
     </div>
+  </ul>
+  <VueQueryDevTools />
 </template>
 <style scoped>
     .games {

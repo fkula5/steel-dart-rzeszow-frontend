@@ -1,42 +1,5 @@
 <script setup lang="ts">
-const games = [
-    {
-        date: '2023-07-01',
-        playerOne: { name: 'John', surname: 'Doe' },
-        score: '6:4',
-        playerTwo: { name: 'Jane', surname: 'Smith' }
-    },
-    {
-        date: '2023-07-02',
-        playerOne: { name: 'Alice', surname: 'Johnson' },
-        score: '6:3',
-        playerTwo: { name: 'Bob', surname: 'Williams' }
-    },
-    {
-        date: '2023-07-03',
-        playerOne: { name: 'Michael', surname: 'Brown' },
-        score: '6:2',
-        playerTwo: { name: 'Emma', surname: 'Davis' }
-    },
-    {
-        date: '2023-07-04',
-        playerOne: { name: 'David', surname: 'Miller' },
-        score: '6:1',
-        playerTwo: { name: 'Olivia', surname: 'Jones' }
-    },
-    {
-        date: '2023-07-05',
-        playerOne: { name: 'Daniel', surname: 'Wilson' },
-        score: '6:5',
-        playerTwo: { name: 'Sophia', surname: 'Martinez' }
-    },
-    {
-        date: '2023-07-06',
-        playerOne: { name: 'Matthew', surname: 'Taylor' },
-        score: '6:0',
-        playerTwo: { name: 'Isabella', surname: 'Anderson' }
-    }
-];
+import GameList from "../components/league/GameList.vue";
 </script>
 
 <template>
@@ -59,18 +22,7 @@ const games = [
                 </div>
                 <div class="round">Kolejka⬇️</div>
             </div>
-            <div class="games">
-                <div v-for="game in games" class="game">
-                    <div class="date">{{ game.date }}</div>
-                    <div class="player-one">
-                        {{ game.playerOne.name + ' ' + game.playerOne.surname }}
-                    </div>
-                    <div class="score">{{ game.score }}</div>
-                    <div class="player-two">
-                        {{ game.playerTwo.name + ' ' + game.playerTwo.surname }}
-                    </div>
-                </div>
-            </div>
+            <GameList />
         </div>
     </main>
 </template>
@@ -134,19 +86,6 @@ p {
     display: flex;
     gap: 10px;
 }
-.games {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-}
-.game {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 3px solid #534843;
-    border-radius: 20px;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
+
+
 </style>

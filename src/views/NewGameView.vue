@@ -16,15 +16,18 @@ const formData = {
     playerTwoFastOuts: ref<string[]>([])
 };
 
-const playerOneCheckout = ref<string>('');
+const playerOneHighOut = ref<string>('');
+const playerOneFastOut = ref<string>('');
+const playerTwoHighOut = ref<string>('');
+const playerTwoFastOut = ref<string>('');
 
-const addPlayerStat = (stat, checkout) => {
-    highOuts.value.push(checkout.value);
-};
+const addPlayerStat = (stats, stat)=>{
+    stats.value.push(stat);
+}
 
-const deletePlayerStat = (index: number) => {
-    formData.playerOneHighOuts.value.splice(index, 1);
-};
+const removePlayerStat = (stats, index)=>{
+    stats.value.splice(index, 1);
+}
 </script>
 
 <template>
@@ -55,29 +58,45 @@ const deletePlayerStat = (index: number) => {
                             type="number"
                             name="highOutOne"
                             id="highOutOne"
-                            v-model="playerOneCheckout"
+                            v-model="playerOneHighOut"
                         />
-                        <button type="button" @click="addPlayerOneHighOut">Dodaj</button>
+                        <button type="button" @click="addPlayerStat(formData.playerOneHighOuts, playerOneHighOut)">Dodaj</button>
                     </div>
-                    <ul>
+                    <ul v-if="formData.playerOneHighOuts.value.length > 0">
                         <li
                             v-for="(checkout, index) in formData.playerOneHighOuts.value"
                             :key="index"
                         >
                             {{ checkout }}
-                            <button type="button" @click="deletePlayerOneHighOut(index)">
+                            <button type="button" @click="removePlayerStat(formData.playerOneHighOuts, index)">
                                 Usuń
                             </button>
                         </li>
                     </ul>
                 </div>
-                <label for="fastOutOne">Szybkie kończenia</label>
-                <input
-                    type="number"
-                    name="fastOutOne"
-                    id="fastOutOne"
-                    v-model="formData.playerOneFastOuts"
-                />
+                <div class="fast-outs-container">
+                    <label for="fastOutOne">Szybkie kończenia</label>
+                    <div class="fast-out-input-container">
+                        <input
+                            type="number"
+                            name="fastOutOne"
+                            id="fastOutOne"
+                            v-model="playerOneFastOut"
+                        />
+                        <button type="button" @click="addPlayerStat(formData.playerOneFastOuts, playerOneFastOut)">Dodaj</button>
+                    </div>
+                    <ul v-if="formData.playerOneFastOuts.value.length > 0">
+                        <li
+                            v-for="(checkout, index) in formData.playerOneFastOuts.value"
+                            :key="index"
+                        >
+                            {{ checkout }}
+                            <button type="button" @click="removePlayerStat(formData.playerOneFastOuts, index)">
+                                Usuń
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="player-container">
                 <label for="playerTwo">Gracz 1</label>
@@ -96,20 +115,52 @@ const deletePlayerStat = (index: number) => {
                 <input type="number" name="avgTwo" id="avgTwo" v-model="formData.playerTwoAvg" />
                 <label for="maxTwo">180</label>
                 <input type="number" name="maxTwo" id="maxTwo" v-model="formData.playerTwoMax" />
-                <label for="highOutTwo">Wysokie kończenia</label>
-                <input
-                    type="number"
-                    name="highOutTwo"
-                    id="highOutTwo"
-                    v-model="formData.playerTwoHighOuts"
-                />
-                <label for="fastOutTwo">Szybkie kończenia</label>
-                <input
-                    type="number"
-                    name="fastOutTwo"
-                    id="fastOutTwo"
-                    v-model="formData.playerTwoFastOuts"
-                />
+                <div class="high-outs-container">
+                    <label for="highOutTwo">Wysokie kończenia</label>
+                    <div class="high-out-input-container">
+                        <input
+                            type="number"
+                            name="highOutTwo"
+                            id="highOutTwo"
+                            v-model="playerTwoHighOut"
+                        />
+                        <button type="button" @click="addPlayerStat(formData.playerTwoHighOuts, playerTwoHighOut)">Dodaj</button>
+                    </div>
+                    <ul v-if="formData.playerTwoHighOuts.value.length > 0">
+                        <li
+                            v-for="(checkout, index) in formData.playerTwoHighOuts.value"
+                            :key="index"
+                        >
+                            {{ checkout }}
+                            <button type="button" @click="removePlayerStat(formData.playerTwoHighOuts, index)">
+                                Usuń
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="fast-outs-container">
+                    <label for="fastOutTwo">Szybkie kończenia</label>
+                    <div class="fast-out-input-container">
+                        <input
+                            type="number"
+                            name="fastOutTwo"
+                            id="fastOutTwo"
+                            v-model="playerTwoFastOut"
+                        />
+                        <button type="button" @click="addPlayerStat(formData.playerTwoFastOuts, playerTwoFastOut)">Dodaj</button>
+                    </div>
+                    <ul v-if="formData.playerTwoFastOuts.value.length > 0">
+                        <li
+                            v-for="(checkout, index) in formData.playerTwoFastOuts.value"
+                            :key="index"
+                        >
+                            {{ checkout }}
+                            <button type="button" @click="removePlayerStat(formData.playerTwoFastOuts, index)">
+                                Usuń
+                            </button>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </main>
@@ -137,18 +188,19 @@ main {
     max-width: 600px;
     gap: 10px;
 }
-.high-outs-container {
+.high-outs-container, .fast-outs-container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 10px;
 }
-.high-out-input-container {
+.high-out-input-container, .fast-out-input-container {
     display: flex;
 }
-.high-out-input-container input {
+.high-out-input-container input, .fast-out-input-container input {
     border-radius: 25px 0 0 25px;
 }
-.high-out-input-container button {
+.high-out-input-container button, .fast-out-input-container button {
     border-radius: 0 25px 25px 0;
 }
 input,

@@ -71,5 +71,6 @@ nav > a {
     text-decoration: none;
     font-size: 16px;
     font-weight: bold;
+    color: #fff;
 }
 </style>

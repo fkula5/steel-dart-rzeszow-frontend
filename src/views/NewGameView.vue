@@ -5,15 +5,15 @@ const formData = {
     playerOne: ref(0),
     playerOneScore: ref(0),
     playerOneAvg: ref(0),
-    playerOneMax: ref(0),
+    playerOneMax: ref(0),   
     playerOneHighOuts: ref([]),
     playerOneFastOuts: ref([]),
     playerTwo: ref(0),
     playerTwoScore: ref(0),
     playerTwoAvg: ref(0),
     playerTwoMax: ref(0),
-    playerTwoHighOuts: ref<string[]>([]),
-    playerTwoFastOuts: ref<string[]>([])
+    playerTwoHighOuts: ref<number[]>([]),
+    playerTwoFastOuts: ref<number[]>([])
 };
 
 const playerOneHighOut = ref<string>('');
@@ -21,11 +21,11 @@ const playerOneFastOut = ref<string>('');
 const playerTwoHighOut = ref<string>('');
 const playerTwoFastOut = ref<string>('');
 
-const addPlayerStat = (stats, stat)=>{
+const addPlayerStat = (stats:Array<never>, stat:string)=>{
     stats.value.push(stat);
 }
 
-const removePlayerStat = (stats, index)=>{
+const removePlayerStat = (stats:Array<never>, index:string)=>{
     stats.value.splice(index, 1);
 }
 </script>

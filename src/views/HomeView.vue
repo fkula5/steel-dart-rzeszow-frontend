@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import GameList from "../components/league/GameList.vue";
+import GameList from '../components/league/GameList.vue';
 </script>
 
 <template>
@@ -30,10 +30,9 @@ import GameList from "../components/league/GameList.vue";
 <style scoped>
 main {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     min-height: 1000px;
     gap: 30px;
 }
@@ -86,6 +85,4 @@ p {
     display: flex;
     gap: 10px;
 }
-
-
 </style>

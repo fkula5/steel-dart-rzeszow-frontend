@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import LoginView from '../views/LoginView.vue';
 import NewGameView from '../views/NewGameView.vue';
+import LeagueView from '@/views/LeagueView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,6 +21,11 @@ const router = createRouter({
             path: '/newGame',
             name: 'newGame',
             component: NewGameView
+        },
+        {
+            path: '/leagues/:id',
+            name: 'league',
+            component: LeagueView
         }
     ]
 });

@@ -13,6 +13,11 @@ import GameList from '../components/league/GameList.vue';
                 </div>
             </div>
         </div>
+        <div class="league-buttons">
+            <RouterLink to="/leagues/1"><button>1 Liga</button></RouterLink>
+            <RouterLink to="/leagues/2"><button>2 Liga</button></RouterLink>
+            <RouterLink to="/leagues/3"><button>3 Liga</button></RouterLink>
+        </div>
         <div class="league-tables">
             <div class="modals">
                 <div class="leagues">
@@ -30,12 +35,24 @@ import GameList from '../components/league/GameList.vue';
 <style scoped>
 main {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     min-height: 1000px;
     gap: 30px;
+}
+.league-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+.league-buttons button {
+    background-color: #2e2e2e;
+    border-radius: 20px;
+    padding: 10px 30px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
 }
 .league-tables,
 .news-wrapper {

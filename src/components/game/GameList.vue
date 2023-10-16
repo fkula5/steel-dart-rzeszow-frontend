@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import GameItem from './GameItem.vue';
 const games = [
-{
+    {
         id: 1,
         date: '2023-07-01',
         playerOne: { name: 'John', surname: 'Doe' },
@@ -43,15 +43,15 @@ const games = [
         score: '6:0',
         playerTwo: { name: 'Isabella', surname: 'Anderson' }
     }
-]
+];
 </script>
 <template>
     <div class="games">
-        <GameItem v-for="game in games" :key="game.id" :game="game"/>
+        <GameItem v-for="game in games" :key="game.id" :game="game" />
     </div>
 </template>
 <style scoped>
-    .games {
+.games {
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -20,7 +20,7 @@ const props = defineProps<{
             <th>Wysokie kończenia</th>
             <th>Szybkie kończenia</th>
         </thead>
-        <tbody v-if="props.players">
+        <tbody>
             <LeagueTableRow v-for="player in props.players" :player="player" />
         </tbody>
     </table>

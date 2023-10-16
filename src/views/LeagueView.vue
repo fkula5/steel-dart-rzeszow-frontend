@@ -15,7 +15,7 @@ const { data: players } = useGetLeaguePlayers(id as string);
         <h1 v-if="$route.params.id === '1'">Tabela Pierwszej Ligi</h1>
         <h1 v-if="$route.params.id === '2'">Tabela Drugiej Ligi</h1>
         <h1 v-if="$route.params.id === '3'">Tabela Trzeciej Ligi</h1>
-        <LeagueTable :players="players.data.data" />
+        <LeagueTable v-if="players" :players="players.data.data" />
     </main>
 </template>
 

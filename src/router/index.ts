@@ -4,6 +4,7 @@ import LoginView from '../views/LoginView.vue';
 import NewGameView from '../views/NewGameView.vue';
 import LeagueView from '@/views/LeagueView.vue';
 import PlayerView from '@/views/PlayerView.vue';
+import NotFoundView from '@/views/NotFoundView.vue';
 
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
             path: '/players/:id',
             name: 'player',
             component: PlayerView
+        },
+        {
+            path: '/:notFound',
+            name: 'notFound',
+            component: NotFoundView
         }
     ]
 });

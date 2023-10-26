@@ -1,5 +1,11 @@
 <script setup lang="ts">
+import { useGetRecentGamesByLeague } from '@/api/games/query';
+import { ref } from 'vue';
 import GameList from '../components/game/GameList.vue';
+
+const getRecentGames = async (leagueId: string) => {
+    const { data: games } = useGetRecentGamesByLeague(leagueId);
+};
 </script>
 
 <template>
@@ -21,13 +27,13 @@ import GameList from '../components/game/GameList.vue';
         <div class="league-tables">
             <div class="modals">
                 <div class="leagues">
-                    <div>1 Liga</div>
-                    <div>2 Liga</div>
-                    <div>3 Liga</div>
+                    <div @click="getRecentGames('1')">1 Liga</div>
+                    <div @click="getRecentGames('2')">2 Liga</div>
+                    <div @click="getRecentGames('3')">3 Liga</div>
                 </div>
                 <div class="round">Kolejka⬇️</div>
             </div>
-            <GameList />
+            <GameList v-if="games" :games="games" />
         </div>
     </main>
 </template>

@@ -1,5 +1,15 @@
 <script setup lang="ts">
+import { ref } from 'vue';
 import GameList from '../components/game/GameList.vue';
+import { useRoute } from 'vue-router';
+import { useGetRecentGamesByLeague } from '@/api/games/query';
+
+const {
+    params: { id }
+} = useRoute();
+
+const leagueId = ref(1);
+const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId.value);
 </script>
 
 <template>
@@ -21,13 +31,13 @@ import GameList from '../components/game/GameList.vue';
         <div class="league-tables">
             <div class="modals">
                 <div class="leagues">
-                    <div>1 Liga</div>
-                    <div>2 Liga</div>
-                    <div>3 Liga</div>
+                    <button type="button" @click="leagueId = 1">Liga 1</button>
+                    <button type="button" @click="leagueId = 2">Liga 2</button>
+                    <button type="button" @click="leagueId = 3">Liga 3</button>
                 </div>
                 <div class="round">Kolejka⬇️</div>
             </div>
-            <GameList />
+            <GameList :games="games" :isLoading="isLoading" />
         </div>
     </main>
 </template>
@@ -98,6 +108,7 @@ p {
     background-color: #1e1e1e;
     border-radius: 20px;
     padding: 5px 30px;
+    cursor: pointer;
 }
 .leagues {
     display: flex;

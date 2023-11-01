@@ -6,5 +6,7 @@ export const useGetGames = () => {
 };
 
 export const useGetRecentGamesByLeague = (leagueId) => {
-    return useQuery(['recent-league-games', leagueId], () => fetchRecentGamesByLeague(leagueId));
+    return useQuery(['recent-league-games', leagueId], () =>
+        fetchRecentGamesByLeague(leagueId.value)
+    );
 };

@@ -9,7 +9,7 @@ const {
 } = useRoute();
 
 const leagueId = ref(1);
-const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId.value);
+const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId);
 </script>
 
 <template>
@@ -31,9 +31,9 @@ const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId.value);
         <div class="league-tables">
             <div class="modals">
                 <div class="leagues">
-                    <button type="button" @click="leagueId = 1">Liga 1</button>
-                    <button type="button" @click="leagueId = 2">Liga 2</button>
-                    <button type="button" @click="leagueId = 3">Liga 3</button>
+                    <div type="button" @click="leagueId = 1">Liga 1</div>
+                    <div type="button" @click="leagueId = 2">Liga 2</div>
+                    <div type="button" @click="leagueId = 3">Liga 3</div>
                 </div>
                 <div class="round">Kolejka⬇️</div>
             </div>

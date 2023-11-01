@@ -5,6 +5,6 @@ export const useGetGames = () => {
     return useQuery(['games'], () => fetchGames());
 };
 
-export const useGetRecentGamesByLeague = (leagueId: string) => {
+export const useGetRecentGamesByLeague = (leagueId) => {
     return useQuery(['recent-league-games', leagueId], () => fetchRecentGamesByLeague(leagueId));
 };

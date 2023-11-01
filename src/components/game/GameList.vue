@@ -1,12 +1,16 @@
 <script setup lang="ts">
-import { useGetGames } from '@/api/games/query';
+import { useGetRecentGamesByLeague } from '@/api/games/query';
 import GameItem from './GameItem.vue';
 
-const { data: games } = useGetGames();
+const props = defineProps<{
+    games: any;
+    isLoading: any;
+}>();
 </script>
 <template>
     <div class="games">
-        <GameItem v-if="games" v-for="game in games.data.data" :key="game.id" :game="game" />
+        <div v-if="props.isLoading">Ładuje...</div>
+        <GameItem v-if="games" v-for="game in props.games.data.data" :key="game.id" :game="game" />
     </div>
 </template>
 <style scoped>

@@ -53,7 +53,7 @@ const { data: player } = useGetPlayerInfo(id as string);
                             <td class="right-column">
                                 <ul>
                                     <li v-for="highOut in player.data.data.highOuts" :key="highOut">
-                                        {{ highOut.highOut.value }}
+                                        {{ highOut.value }}
                                     </li>
                                 </ul>
                             </td>
@@ -63,7 +63,7 @@ const { data: player } = useGetPlayerInfo(id as string);
                             <td class="right-column">
                                 <ul>
                                     <li v-for="fastOut in player.data.data.fastOuts" :key="fastOut">
-                                        {{ fastOut.fastOut.value }}
+                                        {{ fastOut.value }}
                                     </li>
                                 </ul>
                             </td>

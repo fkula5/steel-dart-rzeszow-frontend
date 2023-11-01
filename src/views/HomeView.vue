@@ -31,9 +31,9 @@ const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId);
         <div class="league-tables">
             <div class="modals">
                 <div class="leagues">
-                    <div type="button" @click="leagueId = 1">Liga 1</div>
-                    <div type="button" @click="leagueId = 2">Liga 2</div>
-                    <div type="button" @click="leagueId = 3">Liga 3</div>
+                    <div :class="leagueId === 1 ? 'active' : ''" @click="leagueId = 1">Liga 1</div>
+                    <div :class="leagueId === 2 ? 'active' : ''" @click="leagueId = 2">Liga 2</div>
+                    <div :class="leagueId === 3 ? 'active' : ' '" @click="leagueId = 3">Liga 3</div>
                 </div>
             </div>
             <GameList :games="games" :isLoading="isLoading" />
@@ -62,6 +62,9 @@ main {
     border: none;
     font-size: 16px;
     cursor: pointer;
+}
+.league-buttons button:hover {
+    background-color: #2a2a2a;
 }
 .league-tables,
 .news-wrapper {
@@ -108,8 +111,15 @@ p {
     padding: 5px 30px;
     cursor: pointer;
 }
+.leagues > div:hover {
+    background-color: #1a1a1a;
+}
 .leagues {
     display: flex;
     gap: 10px;
+}
+.active {
+    color: #534843;
+    transition: all 0.3s;
 }
 </style>

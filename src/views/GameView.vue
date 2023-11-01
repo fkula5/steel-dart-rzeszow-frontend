@@ -15,7 +15,13 @@ const { data: game, isLoading } = useGetGame(id as string);
         <div v-else class="game-container">
             <div class="players-container">
                 <div class="player-container left-column">
-                    <h2>
+                    <h2
+                        :class="
+                            game.data.data.winner === game.data.data.playerOne.id
+                                ? 'winner'
+                                : 'loser'
+                        "
+                    >
                         {{
                             game.data.data.playerOne.name +
                             ' ' +
@@ -24,7 +30,13 @@ const { data: game, isLoading } = useGetGame(id as string);
                     </h2>
                 </div>
                 <div class="player-container right-column">
-                    <h2>
+                    <h2
+                        :class="
+                            game.data.data.winner === game.data.data.playerTwo.id
+                                ? 'winner'
+                                : 'loser'
+                        "
+                    >
                         {{
                             game.data.data.playerTwo.name +
                             ' ' +
@@ -102,6 +114,12 @@ main {
     align-items: center;
     min-height: 800px;
 }
+.game-container {
+    background-color: #2e2e2e;
+    width: 100%;
+    border-radius: 20px;
+    padding: 20px;
+}
 .players-container {
     display: flex;
     justify-content: space-between;
@@ -140,5 +158,11 @@ h2 {
     h2 {
         font-size: 24px;
     }
+}
+.winner {
+    color: green;
+}
+.loser {
+    color: red;
 }
 </style>

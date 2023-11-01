@@ -25,7 +25,6 @@ import GameList from '../components/game/GameList.vue';
                     <div>2 Liga</div>
                     <div>3 Liga</div>
                 </div>
-                <div class="round">Kolejka⬇️</div>
             </div>
             <GameList />
         </div>
@@ -93,8 +92,7 @@ p {
     display: flex;
     justify-content: space-between;
 }
-.leagues > div,
-.round {
+.leagues > div {
     background-color: #1e1e1e;
     border-radius: 20px;
     padding: 5px 30px;

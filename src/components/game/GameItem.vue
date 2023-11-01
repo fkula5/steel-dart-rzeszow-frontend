@@ -42,6 +42,10 @@ const props = defineProps<{
     padding-top: 10px;
     padding-bottom: 10px;
 }
+.game:hover {
+    background-color: #534843;
+    transition: all 0.5s;
+}
 a {
     text-decoration: none;
 }

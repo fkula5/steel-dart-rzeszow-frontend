@@ -35,7 +35,6 @@ const { data: games, isLoading } = useGetRecentGamesByLeague(leagueId);
                     <div type="button" @click="leagueId = 2">Liga 2</div>
                     <div type="button" @click="leagueId = 3">Liga 3</div>
                 </div>
-                <div class="round">Kolejka⬇️</div>
             </div>
             <GameList :games="games" :isLoading="isLoading" />
         </div>
@@ -103,8 +102,7 @@ p {
     display: flex;
     justify-content: space-between;
 }
-.leagues > div,
-.round {
+.leagues > div {
     background-color: #1e1e1e;
     border-radius: 20px;
     padding: 5px 30px;

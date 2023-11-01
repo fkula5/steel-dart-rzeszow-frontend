@@ -17,16 +17,20 @@ const props = defineProps<{
 }>();
 </script>
 <template>
-    <div class="game">
-        <div class="date">{{ props.game.created_at }}</div>
-        <div class="player-one">
-            {{ props.game.playerOne.name + ' ' + props.game.playerOne.secondName }}
+    <RouterLink :to="`/games/${props.game.id}`">
+        <div class="game">
+            <div class="date">{{ props.game.created_at }}</div>
+            <div class="player-one">
+                {{ props.game.playerOne.name + ' ' + props.game.playerOne.secondName }}
+            </div>
+            <div class="score">
+                {{ props.game.playerOneScore }} - {{ props.game.playerTwoScore }}
+            </div>
+            <div class="player-two">
+                {{ props.game.playerTwo.name + ' ' + props.game.playerTwo.secondName }}
+            </div>
         </div>
-        <div class="score">{{ props.game.playerOneScore }} - {{ props.game.playerTwoScore }}</div>
-        <div class="player-two">
-            {{ props.game.playerTwo.name + ' ' + props.game.playerTwo.secondName }}
-        </div>
-    </div>
+    </RouterLink>
 </template>
 <style scoped>
 .game {
@@ -37,5 +41,8 @@ const props = defineProps<{
     text-align: center;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+a {
+    text-decoration: none;
 }
 </style>

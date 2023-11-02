@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useGetLeaguePlayers } from '@/api/players/query';
 import LeagueTable from '@/components/league/LeagueTable.vue';
+import TabsWrapper from '@/components/tab/TabsWrapper.vue';
+import Tab from '@/components/tab/Tab.vue';
 import { useRoute } from 'vue-router';
 
 const {
@@ -12,10 +14,16 @@ const { data: players } = useGetLeaguePlayers(id as string);
 
 <template>
     <main>
-        <h1 v-if="$route.params.id === '1'">Tabela Pierwszej Ligi</h1>
-        <h1 v-if="$route.params.id === '2'">Tabela Drugiej Ligi</h1>
-        <h1 v-if="$route.params.id === '3'">Tabela Trzeciej Ligi</h1>
-        <LeagueTable v-if="players" :players="players.data.data" />
+        <h1 v-if="$route.params.id === '1'">Pierwsza Liga</h1>
+        <h1 v-if="$route.params.id === '2'">Druga Liga</h1>
+        <h1 v-if="$route.params.id === '3'">Trzecia Liga</h1>
+
+        <TabsWrapper>
+            <Tab title="Tabela"><LeagueTable v-if="players" :players="players.data.data" /></Tab>
+            <Tab title="Mecze">
+                <div class="placeholder"></div>
+            </Tab>
+        </TabsWrapper>
     </main>
 </template>
 
@@ -27,5 +35,13 @@ main {
     flex-direction: column;
     min-height: 1000px;
     gap: 30px;
+}
+h1 {
+    text-align: center;
+}
+.placeholder {
+    height: 1000px;
+    background-color: #2e2e2e;
+    border-radius: 8px;
 }
 </style>

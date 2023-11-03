@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { useGetPlayerInfo } from '@/api/players/query';
+import Player from '@/components/player/Player.vue';
+import Tab from '@/components/tab/Tab.vue';
+import TabsWrapper from '@/components/tab/TabsWrapper.vue';
 import { useRoute } from 'vue-router';
 
 const {
@@ -11,67 +14,12 @@ const { data: player } = useGetPlayerInfo(id as string);
 
 <template>
     <main>
-        <div class="player-container">
-            <h1>Profil zawodnika</h1>
-            <div v-if="player" class="player-statistics-container">
-                <h2>{{ player.data.data.name + ' ' + player.data.data.secondName }}</h2>
-                <h3>Poziom rozgrywkowy - {{ player.data.data.league.league_name }}</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th class="left-column">Statystyka</th>
-                            <th class="right-column">Wartość</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="left-column">Średnia</td>
-                            <td class="right-column">{{ player.data.data.average3Darts }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Punkty</td>
-                            <td class="right-column">{{ player.data.data.points }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Bilans</td>
-                            <td class="right-column">{{ player.data.data.balance }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Wygrane legi</td>
-                            <td class="right-column">{{ player.data.data.legsWon }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Przegrane legi</td>
-                            <td class="right-column">{{ player.data.data.legsLost }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">180</td>
-                            <td class="right-column">{{ player.data.data.maxAmount }}</td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Wysokie kończenia</td>
-                            <td class="right-column">
-                                <ul>
-                                    <li v-for="highOut in player.data.data.highOuts" :key="highOut">
-                                        {{ highOut.value }}
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="left-column">Szybkie kończenia</td>
-                            <td class="right-column">
-                                <ul>
-                                    <li v-for="fastOut in player.data.data.fastOuts" :key="fastOut">
-                                        {{ fastOut.value }}
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <TabsWrapper>
+            <Tab title="Gracz"><Player v-if="player" :player="player.data.data" /></Tab>
+            <Tab title="Mecze">
+                <div class="placeholder"></div>
+            </Tab>
+        </TabsWrapper>
     </main>
 </template>
 
@@ -86,34 +34,10 @@ main {
     min-height: 1000px;
     text-align: center;
 }
-.player-container {
+.placeholder {
+    height: 800px;
     background-color: #2e2e2e;
-    border-radius: 20px;
-    padding: 20px;
-}
-table {
+    border-radius: 8px;
     width: 100%;
-    border-collapse: collapse;
-}
-tr {
-    border-bottom: 2px solid #534843;
-}
-td,
-th {
-    padding: 10px;
-}
-.left-column {
-    text-align: left;
-}
-.right-column {
-    text-align: right;
-}
-ul {
-    list-style-type: none;
-}
-@media screen and (min-width: 768px) {
-    .player-container {
-        min-width: 500px;
-    }
 }
 </style>

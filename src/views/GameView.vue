@@ -15,22 +15,26 @@ const { data: game, isLoading } = useGetGame(id as string);
         <div v-else class="game-container">
             <div class="players-container">
                 <div class="player-container left-column">
-                    <h2>
-                        {{
-                            game.data.data.playerOne.name +
-                            ' ' +
-                            game.data.data.playerOne.secondName
-                        }}
-                    </h2>
+                    <RouterLink :to="`/players/${game.data.data.playerOne.id}`">
+                        <h2>
+                            {{
+                                game.data.data.playerOne.name +
+                                ' ' +
+                                game.data.data.playerOne.secondName
+                            }}
+                        </h2>
+                    </RouterLink>
                 </div>
                 <div class="player-container right-column">
-                    <h2>
-                        {{
-                            game.data.data.playerTwo.name +
-                            ' ' +
-                            game.data.data.playerTwo.secondName
-                        }}
-                    </h2>
+                    <RouterLink :to="`/players/${game.data.data.playerOne.id}`">
+                        <h2>
+                            {{
+                                game.data.data.playerTwo.name +
+                                ' ' +
+                                game.data.data.playerTwo.secondName
+                            }}
+                        </h2>
+                    </RouterLink>
                 </div>
             </div>
             <div class="game-stats-container">
@@ -132,6 +136,9 @@ ul {
 }
 h2 {
     font-size: 16px;
+}
+a {
+    text-decoration: none;
 }
 @media screen and (min-width: 768px) {
     .player-container {

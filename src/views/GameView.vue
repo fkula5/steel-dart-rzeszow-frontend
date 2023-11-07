@@ -15,34 +15,38 @@ const { data: game, isLoading } = useGetGame(id as string);
         <div v-else class="game-container">
             <div class="players-container">
                 <div class="player-container left-column">
-                    <h2
-                        :class="
-                            game.data.data.winner === game.data.data.playerOne.id
-                                ? 'winner'
-                                : 'loser'
-                        "
-                    >
-                        {{
-                            game.data.data.playerOne.name +
-                            ' ' +
-                            game.data.data.playerOne.secondName
-                        }}
-                    </h2>
+                    <RouterLink :to="`/players/${game.data.data.playerOne.id}`">
+                        <h2
+                            :class="
+                                game.data.data.winner === game.data.data.playerOne.id
+                                    ? 'winner'
+                                    : 'loser'
+                            "
+                        >
+                            {{
+                                game.data.data.playerOne.name +
+                                ' ' +
+                                game.data.data.playerOne.secondName
+                            }}
+                        </h2>
+                    </RouterLink>
                 </div>
                 <div class="player-container right-column">
-                    <h2
-                        :class="
-                            game.data.data.winner === game.data.data.playerTwo.id
-                                ? 'winner'
-                                : 'loser'
-                        "
-                    >
-                        {{
-                            game.data.data.playerTwo.name +
-                            ' ' +
-                            game.data.data.playerTwo.secondName
-                        }}
-                    </h2>
+                    <RouterLink :to="`/players/${game.data.data.playerTwo.id}`"
+                        ><h2
+                            :class="
+                                game.data.data.winner === game.data.data.playerTwo.id
+                                    ? 'winner'
+                                    : 'loser'
+                            "
+                        >
+                            {{
+                                game.data.data.playerTwo.name +
+                                ' ' +
+                                game.data.data.playerTwo.secondName
+                            }}
+                        </h2>
+                    </RouterLink>
                 </div>
             </div>
             <div class="game-stats-container">
@@ -123,6 +127,9 @@ main {
 .players-container {
     display: flex;
     justify-content: space-between;
+}
+a {
+    text-decoration: none;
 }
 table {
     width: 100%;

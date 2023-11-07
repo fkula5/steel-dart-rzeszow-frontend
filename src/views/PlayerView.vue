@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import { useGetGamesByPlayer } from '@/api/games/query';
 import { useGetPlayerInfo } from '@/api/players/query';
 import Player from '@/components/player/Player.vue';
 import Tab from '@/components/tab/Tab.vue';
 import TabsWrapper from '@/components/tab/TabsWrapper.vue';
+import GameList from '@/components/game/GameList.vue';
 import { useRoute } from 'vue-router';
 
 const {
@@ -10,14 +12,18 @@ const {
 } = useRoute();
 
 const { data: player } = useGetPlayerInfo(id as string);
+
+const { data: games, isLoading } = useGetGamesByPlayer(id as string);
 </script>
 
 <template>
     <main>
         <TabsWrapper>
-            <Tab title="Gracz"><Player v-if="player" :player="player.data.data" /></Tab>
+            <Tab title="Gracz">
+                <Player v-if="player" :player="player.data.data" />
+            </Tab>
             <Tab title="Mecze">
-                <div class="placeholder"></div>
+                <GameList :games="games" :isLoading="isLoading" />
             </Tab>
         </TabsWrapper>
     </main>
@@ -26,18 +32,14 @@ const { data: player } = useGetPlayerInfo(id as string);
 <style scoped>
 main {
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 20px auto 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     min-height: 1000px;
-    text-align: center;
+    gap: 30px;
 }
-.placeholder {
-    height: 800px;
-    background-color: #2e2e2e;
+.games {
+    padding: 20px;
     border-radius: 8px;
-    width: 100%;
 }
 </style>

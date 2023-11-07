@@ -73,6 +73,7 @@ const props = defineProps<{
     background-color: #2e2e2e;
     border-radius: 20px;
     padding: 20px;
+    text-align: center;
 }
 table {
     width: 100%;

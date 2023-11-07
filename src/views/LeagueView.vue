@@ -44,11 +44,6 @@ main {
 h1 {
     text-align: center;
 }
-.placeholder {
-    height: 1000px;
-    background-color: #2e2e2e;
-    border-radius: 8px;
-}
 .games {
     padding: 20px;
     border-radius: 8px;

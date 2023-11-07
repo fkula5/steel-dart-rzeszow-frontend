@@ -4,27 +4,53 @@ const props = defineProps<{ player: undefined }>();
 
 <template>
     <tr>
-        <td>{{ props.player.name }}</td>
-        <td>{{ props.player.secondName }}</td>
-        <td>{{ props.player.points }}</td>
-        <td>{{ props.player.balance }}</td>
-        <td>{{ props.player.legsWon }}</td>
-        <td>{{ props.player.legsLost }}</td>
-        <td>{{ props.player.average3Darts }}</td>
-        <td>{{ props.player.maxAmount }}</td>
         <td>
-            <ul>
-                <li v-for="(highOut, index) in props.player.highOuts" :key="index">
-                    {{ highOut.value }}
-                </li>
-            </ul>
+            <RouterLink :to="`/players/${props.player.id}`">{{ props.player.name }}</RouterLink>
         </td>
         <td>
-            <ul>
-                <li v-for="(fastOut, index) in props.player.fastOuts" :key="index">
-                    {{ fastOut.value }}
-                </li>
-            </ul>
+            <RouterLink :to="`/players/${props.player.id}`">{{
+                props.player.secondName
+            }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{ props.player.points }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{ props.player.balance }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{ props.player.legsWon }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{ props.player.legsLost }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{
+                props.player.average3Darts
+            }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">{{
+                props.player.maxAmount
+            }}</RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`"
+                ><ul>
+                    <li v-for="(highOut, index) in props.player.highOuts" :key="index">
+                        {{ highOut.value }}
+                    </li>
+                </ul>
+            </RouterLink>
+        </td>
+        <td>
+            <RouterLink :to="`/players/${props.player.id}`">
+                <ul>
+                    <li v-for="(fastOut, index) in props.player.fastOuts" :key="index">
+                        {{ fastOut.value }}
+                    </li>
+                </ul>
+            </RouterLink>
         </td>
     </tr>
 </template>

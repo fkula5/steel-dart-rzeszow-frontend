@@ -1,5 +1,11 @@
 import { useQuery } from '@tanstack/vue-query';
-import { fetchGame, fetchGames, fetchRecentGamesByLeague } from './game';
+import {
+    fetchGame,
+    fetchGames,
+    fetchGamesByLeague,
+    fetchGamesByPlayer,
+    fetchRecentGamesByLeague
+} from './game';
 
 export const useGetGames = () => {
     return useQuery(['games'], () => fetchGames());
@@ -13,4 +19,13 @@ export const useGetRecentGamesByLeague = (leagueId) => {
     return useQuery(['recent-league-games', leagueId], () =>
         fetchRecentGamesByLeague(leagueId.value)
     );
+};
+
+export const useGetGamesByLeague = (leagueId) => {
+    console.log(leagueId);
+    return useQuery(['league-games', leagueId], () => fetchGamesByLeague(leagueId));
+};
+
+export const useGetGamesByPlayer = (playerId) => {
+    return useQuery(['player-games', playerId], () => fetchGamesByPlayer(playerId));
 };

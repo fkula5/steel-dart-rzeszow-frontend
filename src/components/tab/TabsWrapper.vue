@@ -43,7 +43,7 @@ export default {
     padding: 10px 20px;
     margin-right: 10px;
     background-color: #2e2e2e;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     transition: 0.4s background-color ease-out;
     margin-bottom: 10px;

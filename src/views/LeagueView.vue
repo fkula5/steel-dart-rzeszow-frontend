@@ -3,13 +3,16 @@ import { useGetLeaguePlayers } from '@/api/players/query';
 import LeagueTable from '@/components/league/LeagueTable.vue';
 import TabsWrapper from '@/components/tab/TabsWrapper.vue';
 import Tab from '@/components/tab/Tab.vue';
+import GameList from '@/components/game/GameList.vue';
 import { useRoute } from 'vue-router';
+import { useGetGamesByLeague } from '@/api/games/query';
 
 const {
     params: { id }
 } = useRoute();
 
 const { data: players } = useGetLeaguePlayers(id as string);
+const { data: games, isLoading } = useGetGamesByLeague(id as string);
 </script>
 
 <template>
@@ -19,9 +22,11 @@ const { data: players } = useGetLeaguePlayers(id as string);
         <h1 v-if="$route.params.id === '3'">Trzecia Liga</h1>
 
         <TabsWrapper>
-            <Tab title="Tabela"><LeagueTable v-if="players" :players="players.data.data" /></Tab>
+            <Tab title="Tabela">
+                <LeagueTable v-if="players" :players="players.data.data" />
+            </Tab>
             <Tab title="Mecze">
-                <div class="placeholder"></div>
+                <GameList :games="games" :isLoading="isLoading" />
             </Tab>
         </TabsWrapper>
     </main>
@@ -42,6 +47,10 @@ h1 {
 .placeholder {
     height: 1000px;
     background-color: #2e2e2e;
+    border-radius: 8px;
+}
+.games {
+    padding: 20px;
     border-radius: 8px;
 }
 </style>

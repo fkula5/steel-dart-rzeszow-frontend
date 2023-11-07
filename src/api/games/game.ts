@@ -11,3 +11,7 @@ export const fetchGame = (gameId: string) => {
 export const fetchRecentGamesByLeague = (leagueId: Number) => {
     return $axiosInstance.get<unknown>(`/recentLeagueGames/${leagueId}`);
 };
+
+export const fetchGamesByLeague = (leagueId: Number) => {
+    return $axiosInstance.get<unknown>(`/leagueGames/${leagueId}`);
+};
